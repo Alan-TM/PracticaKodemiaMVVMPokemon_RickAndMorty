@@ -39,7 +39,7 @@ class PokemonFragment : Fragment() {
     private fun initializeObservers() {
         pokemonViewModel.pokemones.observe(viewLifecycleOwner, ::mostrarPokemones)
 
-        pokemonViewModel.errorResponse.observe(viewLifecycleOwner, ::showError)
+        //pokemonViewModel.errorResponse.observe(viewLifecycleOwner, ::showError)
 
         pokemonViewModel.isLoading.observe(viewLifecycleOwner, ::loading)
     }

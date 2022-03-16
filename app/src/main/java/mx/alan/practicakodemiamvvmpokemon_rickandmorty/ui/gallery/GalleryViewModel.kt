@@ -19,12 +19,13 @@ class GalleryViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-    var page = MutableLiveData<Int>(1)
+    private val _page = MutableLiveData<Int>(1)
+    val page: LiveData<Int> get() = _page
 
     fun fetchAllCharacters(){
         _isLoading.value = true
         viewModelScope.launch {
-            val response = GetRickAndMortyCharactersUseCase().invoke(page.value!!)
+            val response = GetRickAndMortyCharactersUseCase().invoke(_page.value!!)
 
             try {
                 if (response.isSuccessful) {
@@ -42,10 +43,10 @@ class GalleryViewModel : ViewModel() {
     }
 
     fun sumCounterAndFetchData(){
-        page.value = page.value?.plus(1)
+        _page.value = _page.value?.plus(1)
     }
 
     fun subtractCounterAndFetchData(){
-        page.value = page.value?.minus(1)
+        _page.value = _page.value?.minus(1)
     }
 }
